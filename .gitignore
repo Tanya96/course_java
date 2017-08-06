@@ -1,5 +1,6 @@
 .gradle
 sandbox/build/
+addressbook/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
