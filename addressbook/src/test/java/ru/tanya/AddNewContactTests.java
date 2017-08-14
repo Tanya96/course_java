@@ -1,44 +1,15 @@
 package ru.tanya;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class AddNewContactTests {
-    FirefoxDriver wd;
-    
-    @BeforeMethod
-    public void setUp() throws Exception {
-        System.setProperty("webdriver.gecko.driver","D:\\programs\\geckodriver\\geckodriver.exe");
-        wd = new FirefoxDriver();
-        wd.manage().timeouts();
-        wd.get("http://localhost/addressbook/");
-        login("admin", "secret");
-    }
-
-    private void login(String username, String password) throws InterruptedException {
-        wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(username);
-        wd.findElement(By.name("pass")).click();
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-        Thread.sleep(500);
-    }
+public class AddNewContactTests extends TestBase {
 
     @Test
     public void addNewContact() throws InterruptedException {
         addNew();
         fillFields(new NewContactData("Tanya", "Andreeva", "Penza", "89374249767", "andreeva-tanja@mail.ru"));
         returnHomePage();
-    }
-
-    private void returnHomePage() {
-        wd.findElement(By.linkText("home page")).click();
     }
 
     private void fillFields(NewContactData newContactData) throws InterruptedException {
@@ -65,19 +36,5 @@ public class AddNewContactTests {
     private void addNew() throws InterruptedException {
         wd.findElement(By.linkText("add new")).click();
         Thread.sleep(500);
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        wd.quit();
-    }
-    
-    public static boolean isAlertPresent(FirefoxDriver wd) {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
     }
 }
