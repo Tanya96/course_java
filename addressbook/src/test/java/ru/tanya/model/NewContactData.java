@@ -1,4 +1,4 @@
-package ru.tanya;
+package ru.tanya.model;
 
 public class NewContactData {
     private final String firstName;

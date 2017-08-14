@@ -1,4 +1,4 @@
-package ru.tanya;
+package ru.tanya.model;
 
 public class GroupData {
     private final String name;

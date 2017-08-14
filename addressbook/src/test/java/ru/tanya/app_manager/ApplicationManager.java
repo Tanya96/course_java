@@ -1,15 +1,14 @@
-package ru.tanya;
+package ru.tanya.app_manager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import ru.tanya.model.GroupData;
 
 /**
  * Created by taty on 14.08.2017.
  */
-public class TestBase {
+public class ApplicationManager {
     FirefoxDriver wd;
 
     public static boolean isAlertPresent(FirefoxDriver wd) {
@@ -21,8 +20,7 @@ public class TestBase {
         }
     }
 
-    @BeforeMethod
-    public void setUp() throws Exception {
+    public void init() throws InterruptedException {
         System.setProperty("webdriver.gecko.driver","D:\\programs\\geckodriver\\geckodriver.exe");
         wd = new FirefoxDriver();
         wd.manage().timeouts();
@@ -30,7 +28,7 @@ public class TestBase {
         login("admin", "secret");
     }
 
-    private void login(String username, String password) throws InterruptedException {
+    public void login(String username, String password) throws InterruptedException {
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys(username);
@@ -41,16 +39,16 @@ public class TestBase {
         Thread.sleep(500);
     }
 
-    protected void returnGroupPage() {
+    public void returnGroupPage() {
         wd.findElement(By.linkText("group page")).click();
     }
 
-    protected void submitGroupCreation() throws InterruptedException {
+    public void submitGroupCreation() throws InterruptedException {
         wd.findElement(By.name("submit")).click();
         Thread.sleep(500);
     }
 
-    protected void fillGroupForm(GroupData groupData) {
+    public void fillGroupForm(GroupData groupData) {
         wd.findElement(By.name("group_name")).click();
         wd.findElement(By.name("group_name")).clear();
         wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
@@ -62,31 +60,30 @@ public class TestBase {
         wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
     }
 
-    protected void initGroupCreation() throws InterruptedException {
+    public void initGroupCreation() throws InterruptedException {
         wd.findElement(By.name("new")).click();
         Thread.sleep(500);
     }
 
-    protected void goToGroupPage() throws InterruptedException {
+    public void goToGroupPage() throws InterruptedException {
         wd.findElement(By.cssSelector("a[href='group.php']")).click();
         Thread.sleep(500);
     }
 
-    protected void returnHomePage() {
+    public void returnHomePage() {
         wd.findElement(By.linkText("home page")).click();
     }
 
-    @AfterMethod
-    public void tearDown() {
+    public void stop() {
         wd.quit();
     }
 
-    protected void deleteSelectedGroups() throws InterruptedException {
+    public void deleteSelectedGroups() throws InterruptedException {
         wd.findElement(By.name("delete")).click();
         Thread.sleep(500);
     }
 
-    protected void selectGroup() {
+    public void selectGroup() {
         wd.findElement(By.name("selected[]")).click();
     }
 }

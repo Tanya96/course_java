@@ -1,16 +1,15 @@
-package ru.tanya;
+package ru.tanya.tests;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 public class GroupDeletionTests extends TestBase {
     
     @Test
     public void testGroupDeletion() throws InterruptedException {
-        goToGroupPage();
-        selectGroup();
-        deleteSelectedGroups();
-        returnGroupPage();
+        app.goToGroupPage();
+        app.selectGroup();
+        app.deleteSelectedGroups();
+        app.returnGroupPage();
     }
 
 }
