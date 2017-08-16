@@ -38,4 +38,12 @@ public class GroupHelper extends HelperBase {
     public void selectGroup() throws InterruptedException {
         click(By.name("selected[]"));
     }
+
+    public void initGroupModification() throws InterruptedException {
+        click(By.name("edit"));
+    }
+
+    public void submitGroupModification() throws InterruptedException {
+        click(By.name("update"));
+    }
 }
