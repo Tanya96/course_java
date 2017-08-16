@@ -6,21 +6,15 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 /**
  * Created by taty on 14.08.2017.
  */
-public class SessionHelper {
-    private FirefoxDriver wd;
+public class SessionHelper extends HelperBase {
 
     public SessionHelper(FirefoxDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     public void login(String username, String password) throws InterruptedException {
-        wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(username);
-        wd.findElement(By.name("pass")).click();
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-        Thread.sleep(500);
+        type(By.name("user"), username);
+        type(By.name("pass"), password);
+        click(By.xpath("//form[@id='LoginForm']/input[3]"));
     }
 }

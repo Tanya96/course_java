@@ -6,19 +6,17 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 /**
  * Created by taty on 14.08.2017.
  */
-public class NavigationHelper {
-    private FirefoxDriver wd;
+public class NavigationHelper extends HelperBase {
 
     public NavigationHelper(FirefoxDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     public void goToGroupPage() throws InterruptedException {
-        wd.findElement(By.cssSelector("a[href='group.php']")).click();
-        Thread.sleep(500);
+        click(By.cssSelector("a[href='group.php']"));
     }
 
-    public void returnHomePage() {
-        wd.findElement(By.linkText("home page")).click();
+    public void returnHomePage() throws InterruptedException {
+        click(By.linkText("home page"));
     }
 }
