@@ -13,8 +13,8 @@ public class GroupHelper extends HelperBase {
         super(wd);
     }
 
-    public void returnGroupPage() {
-        wd.findElement(By.linkText("group page")).click();
+    public void returnGroupPage() throws InterruptedException {
+        click(By.linkText("group page"));
     }
 
     public void submitGroupCreation() throws InterruptedException {
@@ -35,7 +35,7 @@ public class GroupHelper extends HelperBase {
         click(By.name("delete"));
     }
 
-    public void selectGroup() {
-        wd.findElement(By.name("selected[]")).click();
+    public void selectGroup() throws InterruptedException {
+        click(By.name("selected[]"));
     }
 }
