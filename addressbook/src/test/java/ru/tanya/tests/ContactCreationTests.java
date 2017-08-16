@@ -3,7 +3,7 @@ package ru.tanya.tests;
 import org.testng.annotations.Test;
 import ru.tanya.model.NewContactData;
 
-public class AddNewContactTests extends TestBase {
+public class ContactCreationTests extends TestBase {
 
     @Test
     public void addNewContact() throws InterruptedException {

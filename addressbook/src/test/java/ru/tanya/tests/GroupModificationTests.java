@@ -6,7 +6,7 @@ import ru.tanya.model.GroupData;
 /**
  * Created by taty on 16.08.2017.
  */
-public class GroupModificationTest extends TestBase {
+public class GroupModificationTests extends TestBase {
 
     @Test
     public void testGroupModification() throws InterruptedException {

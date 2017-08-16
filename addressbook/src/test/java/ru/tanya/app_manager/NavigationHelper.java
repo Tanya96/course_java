@@ -19,4 +19,8 @@ public class NavigationHelper extends HelperBase {
     public void returnHomePage() throws InterruptedException {
         click(By.linkText("home page"));
     }
+
+    public void goToHomePage() throws InterruptedException {
+        click(By.cssSelector("a[href='./']"));
+    }
 }

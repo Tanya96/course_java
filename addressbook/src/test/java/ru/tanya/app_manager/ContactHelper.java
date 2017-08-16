@@ -25,4 +25,20 @@ public class ContactHelper extends HelperBase {
     public void addNew() throws InterruptedException {
         click(By.linkText("add new"));
     }
+
+    public void deleteContact() throws InterruptedException {
+        click(By.cssSelector("input[value='Delete']"));
+    }
+
+    public void selectContact() throws InterruptedException {
+        click(By.name("selected[]"));
+    }
+
+    public void editContact() throws InterruptedException {
+        click(By.cssSelector("img[title='Edit']"));
+    }
+
+    public void updateContact() throws InterruptedException {
+        click(By.name("update"));
+    }
 }
