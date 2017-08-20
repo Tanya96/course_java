@@ -1,22 +1,39 @@
 package ru.tanya.app_manager;
 
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.BrowserType;
 
 /**
  * Created by taty on 14.08.2017.
  */
 public class ApplicationManager {
-    private FirefoxDriver wd;
+    private WebDriver wd;
 
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
+    private String browser;
+
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+    }
 
     public void init() throws InterruptedException {
-        System.setProperty("webdriver.gecko.driver","D:\\programs\\geckodriver\\geckodriver.exe");
-        wd = new FirefoxDriver();
+        if(browser.equals(BrowserType.FIREFOX)){
+            System.setProperty("webdriver.gecko.driver","D:\\programs\\geckodriver\\geckodriver.exe");
+            wd = new FirefoxDriver();
+        }
+        else if(browser.equals(BrowserType.CHROME)){
+            wd = new ChromeDriver();
+        } else if(browser.equals(BrowserType.IEXPLORE)){
+            wd = new InternetExplorerDriver();
+        }
+
         wd.manage().timeouts();
         wd.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(wd);
